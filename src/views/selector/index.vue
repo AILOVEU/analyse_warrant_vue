@@ -1,18 +1,23 @@
 <template>
-    <div id="app">
-        <router-link to="/selector">窝轮筛选器</router-link><br />
-        <router-link to="/decisionor">决策器</router-link>
-        <router-view />
+    <div>
+        <selector-comp></selector-comp>
+        <table-data></table-data>
     </div>
 </template>
 
 <script>
+import selectorComp from './selectorComp'
+import tableData from './tableData'
 
 export default {
-    name: 'app',
+    name: 'selector',
     data() {
-        return {
-        }
+      return {
+      } 
+    },
+    components: {
+        selectorComp, 
+        tableData
     },
 }
 </script>
@@ -24,6 +29,6 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 </style>
