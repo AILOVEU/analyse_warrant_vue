@@ -38,9 +38,11 @@ export default {
     },
     props: ['selectorRangeData'],
     watch: {
+        //  监测筛选规则，筛选表格数据
         selectorRangeData() {
-            let { priceRange, timeRange, minVolumn, BSRange, DSRange } = this.selectorRangeData;
+            let { priceRange, timeRange, minVolumn, BSRange, DSRange,checkedStockList } = this.selectorRangeData;
             let res = this.originTableData.filter(item => {
+                let warrantName = item.warrantName;
                 let V = item.V
                 let T = item.T/ 30
                 let P = item.P
@@ -64,12 +66,16 @@ export default {
                 if (BSRange[0] > BS || BSRange[1] < BS) {
                     return false;
                 }
+                if(!checkedStockList.includes(warrantName.slice(0,2))) {
+                    return false;
+                }
                 return true;
             })
             this.showTableData = res;
         }
     },
     methods: {
+        
         // 排序
         changeSort({prop,order}) {
           let table = this.showTableData.sort( (x1,x2)=> {
@@ -81,6 +87,7 @@ export default {
           })
           this.showTableData = table;
         },
+        // 更新表格数据
         initTable() {
             this.originTableData = [];
             csv2json.csv(this.$refs.csvData.files[0]).then((res) => {
@@ -102,7 +109,21 @@ export default {
                     })
                 }
                 this.showTableData = this.originTableData;
+                this.analyseData();
 
+            })
+        },
+        // 分析数据 -> 回传给筛选组件
+        analyseData() {
+            // 筛选出来
+            let stockList = new Set();
+            let t = this.originTableData;
+            for(let i=1;i < t.length;i++) {
+                let line = t[i];
+                stockList.add(line['warrantName'].slice(0,2))
+            }
+            this.$emit('update:analysedData',{
+                stockList :Array.from(stockList)
             })
         },
         csv() {

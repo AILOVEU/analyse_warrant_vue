@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <selector :selectorRangeData.sync="selectorRangeData"></selector>
-        <table-data :selectorRangeData="selectorRangeData"></table-data>
+        <selector :selectorRangeData.sync="selectorRangeData" :analysedData="analysedData"></selector>
+        <table-data :selectorRangeData="selectorRangeData" :analysedData.sync="analysedData"></table-data>
     </div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
     name: 'app',
     data() {
       return {
-        selectorRangeData: {}
+        selectorRangeData: {},
+        analysedData: {}
       } 
     },
     components: {
