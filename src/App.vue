@@ -1,8 +1,6 @@
 <template>
     <div id="app">
-        <router-link to="/selector">窝轮筛选器</router-link><br />
-        <router-link to="/decisionor">决策器</router-link>
-        <router-view />
+        <router-view></router-view>
     </div>
 </template>
 
@@ -14,6 +12,8 @@ export default {
         return {
         }
     },
+    methods: {
+    }
 }
 </script>
 
@@ -24,6 +24,19 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 5px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 900px;
+}
+.choice-box {
+    width: 300px;
+    height: 300px;
+    line-height: 250px;
+}
+.choice-box .content{
+    padding: 0 auto;
+    
 }
 </style>

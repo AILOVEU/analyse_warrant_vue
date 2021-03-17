@@ -185,7 +185,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .choice-panel-wrapper {
     margin: 10px auto;
     width: 700px;

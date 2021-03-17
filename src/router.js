@@ -4,16 +4,16 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router =  new Router({
-    mode: "history",
+    mode: "hash",
     routes: [
-        // {
-        //     path: '/',
-        //     name: 'index ',
-        //     component: () => import('./App.vue'),
-        //     meta:{
-        //         title: '首页'
-        //     }
-        // },
+        {
+            path: '/',
+            name: 'index ',
+            component: () => import('./nav.vue'),
+            meta:{
+                title: '首页'
+            }
+        },
         {
             path: '/selector',
             name: 'selector ',
