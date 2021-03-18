@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="visual-wrapper">
         <el-button type="warning" @click="generateChart">生成图表</el-button>
         <br />
-        <canvas width="900" height="600" id="main"></canvas>
+        <canvas width="1200" height="600" id="main"></canvas>
     </div>
 </template>
 
@@ -91,17 +91,32 @@ export default {
             myChart.clear();
             var option;
             option = {
+                // toolbox: {
+                //     left: 'center',
+                //     feature: {
+                //         dataZoom: {}
+                //     }
+                // },
+                dataZoom: [{
+                    type: 'inside'
+                }, {
+                    type: 'slider'
+                }],
                 tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {            // Use axis to trigger tooltip
-                        type: 'shadow'        // 'shadow' as default; can also be 'line' or 'shadow'
+                    show: true,
+                    trigger: 'item',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
                     }
                 },
                 legend: {
                     data: this.legendData
                 },
                 label: {
-                  show: true
+                    show: true
                 },
                 grid: {
                     left: '3%',
@@ -129,4 +144,7 @@ export default {
 </script>
 
 <style scoped>
+.visual-wrapper {
+    width: 1400px;
+}
 </style>

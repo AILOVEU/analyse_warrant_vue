@@ -9,6 +9,7 @@
     "subtree": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "clipboard": "^2.0.8",
     "core-js": "^3.6.5",
     "csvtojson": "^2.0.10",
     "echarts": "^5.0.2",

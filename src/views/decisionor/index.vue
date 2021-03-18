@@ -31,8 +31,9 @@ export default {
 
 <style scoped>
 .decisionor-panel-wrapper {
-    margin: 20px auto;
-    width: 1200px;
+    margin: 10px auto;
+    min-height: 700px;
+    width: 1400px;
     text-align: center;
 }
 </style>
