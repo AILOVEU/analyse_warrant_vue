@@ -29,6 +29,14 @@ const router =  new Router({
             meta:{
                 title: '决策器'
             }
+        },
+        {
+            path: '/dev',
+            name: 'dev',
+            component: ()=> import('./views/selector/timepriceChart2.vue'),
+            meta: {
+                title: '开发中页面'
+            }
         }
     ]
 })
