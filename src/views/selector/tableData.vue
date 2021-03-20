@@ -21,6 +21,8 @@
             </el-table-column>
             <el-table-column prop="B" sortable label="打和价差">
             </el-table-column>
+            <el-table-column prop="W" sortable label="涨跌金额">
+            </el-table-column>
         </el-table>
     </div>
 
@@ -72,7 +74,8 @@ export default {
                         P: parseInt(line[5]),
                         D: parseFloat(line[6]),
                         S: parseFloat(line[7]),
-                        B: parseFloat(line[8])
+                        B: parseFloat(line[8]),
+                        W: Math.floor(parseInt(line[5]) * parseFloat(line[9]/100 / ((parseFloat(line[9]/100+1))) ))
                     })
                 }
                 this.showTableData = originTableData;

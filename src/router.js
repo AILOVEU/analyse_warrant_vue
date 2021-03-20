@@ -31,9 +31,17 @@ const router =  new Router({
             }
         },
         {
+            path: '/ajust',
+            name: 'ajust ',
+            component: () => import('./views/ajust/index.vue'),
+            meta:{
+                title: '调整计算器'
+            }
+        },
+        {
             path: '/dev',
             name: 'dev',
-            component: ()=> import('./views/selector/timepriceChart2.vue'),
+            component: ()=> import('./views/volRemind/index.vue'),
             meta: {
                 title: '开发中页面'
             }

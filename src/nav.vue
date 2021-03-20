@@ -10,6 +10,11 @@
                 决策器
             </div>
         </el-card>
+        <el-card class="choice-box" >
+            <div class="content"  @click="jumpTo('/ajust')">
+                调整计算器
+            </div>
+        </el-card>
     </div>
 </template>
 
