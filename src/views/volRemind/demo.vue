@@ -28,7 +28,7 @@ export default {
             let sellArray = [];
             let isSellList = [];
             // 获取前x天的平均值
-            let DAYS = 120;
+            let DAYS = 200;
             let MIN_DAYS = 10;
             let data = [];
             volData.forEach((item, index) => {
@@ -38,35 +38,37 @@ export default {
                         return a + b;
                     }, 0);
                     isSellList.push(0)
-                    data.push(s/(index+1));
+                    data.push(s / (index + 1));
                     return;
                 }
-                let sum = volData.slice(index - DAYS, index).reduce(function (a, b) {
-                    return a + b;
-                }, 0);
-                data.push(sum/DAYS);
+                let sum = this.getSum(volData.slice(index - DAYS, index))
+                data.push(sum / DAYS);
                 // 获取XX日内交易平均值
-                let sum5avg =  volData.slice(index - MIN_DAYS, index).reduce(function (a, b) {
-                    return a + b;
-                }, 0);
-                sum5avg = sum5avg/MIN_DAYS;
+                let sum5avg = this.getSum(volData.slice(index - MIN_DAYS, index));
+                sum5avg = sum5avg / MIN_DAYS;
                 // 如果大于x天平均值的70%大，则不卖出；如果小于x天平均值的50%，则买入
-                if (sum * 1.5 < sum5avg*DAYS && priceData[index]> priceData[index-1]) {
+                if (sum * 1.3 < sum5avg * DAYS && priceData[index] * 2 > (priceData[index - 1] + priceData[index - 2])) {
                     isSellList.push(1)
                     sellArray.push(priceData[index]);
-                }else if (sum*0.7 > sum5avg*DAYS) {
+                } else if (sum * 0.6 > sum5avg * DAYS) {
                     isSellList.push(-1);
                     buyArray.push(priceData[index])
-                }else {
+                } else {
                     isSellList.push(0);
                 }
 
             })
             console.log("卖出数组");
-            console.log(sellArray);
+            console.log(this.getSum(sellArray)/sellArray.length);
             console.log("买入数组");
-            console.log(buyArray);
+            console.log(this.getSum(buyArray)/buyArray.length);
             return isSellList;
+        },
+        getSum(arr) {
+            let sum  =  arr.reduce(function (a, b) {
+                return a + b;
+            }, 0);
+            return sum;
         },
         analyseVolData() {
             // "ts_code,trade_date,close,vol,amount"
@@ -100,7 +102,7 @@ export default {
                 amountData,
                 priceData
             } = this.analyseVolData();
-            amountData =this.getAvg120Vol(volData, priceData);
+            amountData = this.getAvg120Vol(volData, priceData);
             volData = volData.slice(120)
             xAxisData = xAxisData.slice(120)
             amountData = amountData.slice(120)

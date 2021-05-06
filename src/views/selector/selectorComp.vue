@@ -24,7 +24,7 @@
                 :max='selectorOption.time.max' :step="1">
             </el-slider>
             <span>选择最小成交量{{minVolumn}}万</span>
-            <el-slider show-input v-model="minVolumn" :min="100" :max="20000" :step="100">
+            <el-slider show-input v-model="minVolumn" :min="1" :max="20000" :step="100">
             </el-slider>
             <span>选择行权溢价区间{{DSRange}}</span>
             <el-slider range v-model="DSRange" :min="-25" :max='50' :step="1">
@@ -45,7 +45,7 @@ export default {
             isStockCheckAll: true,
             priceRange: [20, 2500],
             timeRange: [1, 36],
-            minVolumn: 100,
+            minVolumn: 1,
             DSRange: [-25, 50],
             BSRange: [0, 50],
             checkedStockList: [],
