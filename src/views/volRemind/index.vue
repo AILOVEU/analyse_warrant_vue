@@ -44,10 +44,29 @@ export default {
     },
     methods: {
         searchData() {
-            this.getDataPromise().then(res => {
+            this.getDataPromise2().then(res => {
                 this.volList = res;
                 Bus.$emit('volRemind-fillData', res)
             });
+        },
+         getDataPromise2() {
+            return new Promise((resolve, reject) => {
+                axios.post('/waditu', {
+                    "api_name": "daily",
+                    "token": "bd2ae863fadaf4f966d3b3c8bba43fac03e88739af3785f08dc559f8",
+                    "params": {
+                        "ts_code": this.selectedStock,
+                        "start_date": "20210101",
+                        "end_date": "20210506"
+                    },
+                    "fields": "ts_code,trade_date,low,high"
+                }).then(res => {
+                    console.log(res.data.data.items);
+                    resolve(res.data.data.items);
+                }).catch(e => {
+                    reject(e);
+                })
+            })
         },
         getDataPromise() {
             return new Promise((resolve, reject) => {

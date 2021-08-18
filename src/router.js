@@ -39,6 +39,14 @@ const router =  new Router({
             }
         },
         {
+            path: '/salary',
+            name: 'salary ',
+            component: () => import('./views/salary/index.vue'),
+            meta:{
+                title: '薪资计算器'
+            }
+        },
+        {
             path: '/dev',
             name: 'dev',
             component: ()=> import('./views/volRemind/index.vue'),

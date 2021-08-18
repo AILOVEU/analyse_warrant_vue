@@ -7,7 +7,6 @@
             <el-tab-pane label="图表展示">
                 <visualization-comp :targetData="targetData"></visualization-comp>
             </el-tab-pane>
-
         </el-tabs>
 
     </div>
