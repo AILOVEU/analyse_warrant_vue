@@ -1,5 +1,7 @@
+const Visualizer = require('webpack-visualizer-plugin');
+
 module.exports = {
-  publicPath: '/analyse_warrant_vue',
+  publicPath: '/warrant',
   css: {
     // 是否分离css（插件ExtractTextPlugin）
     extract: true,
@@ -9,6 +11,13 @@ module.exports = {
     loaderOptions: {},
     // 是否启用 CSS modules for all css / pre-processor files.
     modules: false
+  },
+  configureWebpack: (config)=> {
+    const plugins = config.plugins;
+    plugins.push(new Visualizer({
+      filename: './statics.html'
+    }))
+    config.devtool = 'cheap-eval-source-map'
   },
   devServer: {
 

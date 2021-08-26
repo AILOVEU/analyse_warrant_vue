@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as echarts from 'echarts';
+import echarts from '@/utils/echarts_simpler.js';
 import Bus from '../../utils/bus'
 export default {
     data() {

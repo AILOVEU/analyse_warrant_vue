@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import * as echarts from 'echarts';
+// import * as echarts from 'echarts';
+import echarts from '@/utils/echarts_simpler.js';
 import { v4 as uuidv4 } from 'uuid';
 export default {
     data() {
