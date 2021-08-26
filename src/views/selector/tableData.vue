@@ -43,7 +43,7 @@ export default {
     handleUseDefault() {
       let that = this
       var xhr = new XMLHttpRequest()
-      xhr.open('get', '/demo.csv', true)
+      xhr.open('get', './demo.csv', true)
       xhr.responseType = 'blob'
       xhr.onload = function () {
         if (this.status == 200) {
