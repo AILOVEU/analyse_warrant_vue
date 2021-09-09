@@ -1,5 +1,6 @@
 <template>
     <div class="decisionor-panel-wrapper">
+        <!-- 做T量化决策器 -->
         <el-tabs type="border-card">
             <el-tab-pane label="标的管理">
                 <decision-comp :targetData.sync="targetData"></decision-comp>
@@ -22,9 +23,6 @@ export default {
         }
     },
     components: {decisionComp,visualizationComp},
-    methods: {
-
-    }
 }
 </script>
 

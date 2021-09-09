@@ -7,7 +7,7 @@
         </el-card>
         <el-card class="choice-box" >
             <div class="content"  @click="jumpTo('/decisionor')">
-                决策器
+                做T成本决策器
             </div>
         </el-card>
         <el-card class="choice-box" >

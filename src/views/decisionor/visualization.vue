@@ -1,5 +1,6 @@
 <template>
     <div class="visual-wrapper">
+        <!-- tab右半部分，生成图标 -->
         <el-button type="warning" @click="generateChart">生成图表</el-button>
         <br />
         <canvas width="1200" height="600" id="main"></canvas>
@@ -7,7 +8,6 @@
 </template>
 
 <script>
-// import * as echarts from 'echarts';
 import echarts from '@/utils/echarts_simpler.js';
 import { v4 as uuidv4 } from 'uuid';
 export default {

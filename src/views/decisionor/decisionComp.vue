@@ -1,8 +1,7 @@
 <template>
     <div>
+        <!-- tab左半部分，添加标的 -->
         <el-button type="success" @click="addTarget">添加标的</el-button>
-        <!-- <el-button style="margin-left:300px;" type="info" v-if="target && target.length > 1"
-            @click="delAllTarget">清空</el-button> -->
         <div class="target-wrapper">
             <div v-for="item in target" :key="item.id">
                 <el-card class="card-box">
@@ -123,17 +122,6 @@ export default {
         copy() {
             console.log('copy');
             this.clipboard = new Clipboard('.tag-read')
-            // clipboard.on('success', () => {
-            //     console.log('复制成功')
-            //     //  释放内存
-            //     clipboard.destory()
-            // })
-            // clipboard.on('error', () => {
-            //     // 不支持复制
-            //     console.log('该浏览器不支持复制')
-            //     // 释放内存
-            //     clipboard.destory()
-            // })
         },
         coverImport() {
             if(!this.quickJsonStr) {
@@ -167,9 +155,9 @@ export default {
                 stockName: '',  // 标的名称
                 singlePrice: 100, // 每手金额
                 profit: 0, // 每次盈利
-                fee: 40, // 手续费
+                fee: 5, // 手续费
                 invest: 0, // 右侧观察手数
-                rights: 2 // 每次手数
+                rights: 5 // 每次手数
             })
         },
         delTarget(id) {

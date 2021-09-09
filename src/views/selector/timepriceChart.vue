@@ -1,5 +1,7 @@
 <template>
-    <canvas width="1200" height="700" id="main"></canvas>
+    <div class="chart-wrapper">
+        <canvas width="1200" height="700" id="main"></canvas>
+    </div>
 </template>
 
 <script>
@@ -51,7 +53,7 @@ export default {
             };
         },
         randomHexColor() { //随机生成十六进制颜色
-            return 'rgb(' +  Math.round(Math.random() * 200 +50) + ', ' +  Math.round(Math.random() * 200 +50) +  ', ' +   Math.round(Math.random() * 200 +50) + ', ' + '0.7' + ')'
+            return 'rgb(' +  Math.round(Math.random() * 150 +100) + ', ' +  Math.round(Math.random() * 200 +50) +  ', ' +   Math.round(Math.random() * 200 +50) + ', ' + '0.7' + ')'
         },
         fillChart() {
             var { dataDict, legendData } = this.generateChartData();
@@ -84,10 +86,6 @@ export default {
                             offset: 0,
                             color: this.randomHexColor()
                         },
-                            // {
-                            //     offset: 1,
-                            //     color: this.randomHexColor()
-                            // }
                         ])
                     }
                 });
@@ -151,4 +149,8 @@ export default {
 </script>
 
 <style>
+.chart-wrapper{
+    text-align: center;
+    margin: 0 auto;
+}
 </style>

@@ -12,7 +12,6 @@ const router = new Router({
             redirect: () => {
                 return { path: '/nav' }
             }
-
         },
         {
             path: '/nav',
@@ -50,7 +49,7 @@ const router = new Router({
         {
             path: '/dev',
             name: 'dev',
-            component: () => import('./views/volRemind/index.vue'),
+            component: () => import('./views/rise/index.vue'),
             meta: {
                 title: '开发中页面'
             }

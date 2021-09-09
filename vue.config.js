@@ -6,7 +6,7 @@ module.exports = {
     // 是否分离css（插件ExtractTextPlugin）
     extract: true,
     // 是否开启 CSS source maps
-    sourceMap: false,
+    sourceMap: true,
     // css预设器配置项
     loaderOptions: {},
     // 是否启用 CSS modules for all css / pre-processor files.
@@ -17,10 +17,9 @@ module.exports = {
     plugins.push(new Visualizer({
       filename: './statics.html'
     }))
-    config.devtool = 'cheap-eval-source-map'
+    config.devtool = 'cheap-module-eval-source-map'
   },
   devServer: {
-
     proxy: {
       '/waditu': {
         target: 'http://api.waditu.com',
