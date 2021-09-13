@@ -14,7 +14,7 @@ export default {
                         let [warrant,stock,code,type,amplitude,
                             volume,countdown,price,effectpoint,point,
                             breakpoint,changeval,premium,warrantprice,
-                            conversion] = line;
+                            conversion,delta] = line;
                         originTableData.push({
                             warrant, // 涡轮名称
                             stock, // 正股名称
@@ -30,7 +30,8 @@ export default {
                             changeval,// 涨跌幅
                             premium,// 溢价
                             warrantprice,// 当前价
-                            conversion // 换股比率
+                            conversion, // 换股比率
+                            delta // 对冲值
                         })
                     }
                     console.log(originTableData);

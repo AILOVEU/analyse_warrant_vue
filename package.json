@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --report",
     "lint": "vue-cli-service lint",
-    "subtree": "git subtree push --prefix dist origin gh-pages"
+    "push": "yarn build && git add . && git commit -m 'update' && git push",
+    "deploy": "yarn push &&  git subtree push --prefix=dist origin dist"
   },
   "dependencies": {
     "axios": "^0.21.1",

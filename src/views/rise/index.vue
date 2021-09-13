@@ -3,7 +3,8 @@
         <input name="csvfile" type="file" ref="file" @change="handleCsv" /> <br />
         <p></p>
 
-        <el-form label-width="80px">
+        <el-form label-width="100px">
+            <!-- 窝轮相关数据 -->
             <el-form-item label="选择窝轮">
                 <el-cascader v-model="choiced" :options="options" @change="handleChange">
                 </el-cascader>
@@ -11,24 +12,40 @@
             <el-form-item label="换股比率">
                 <el-input  v-model="chsWarr.conversion"></el-input>
             </el-form-item>
+            <el-form-item label="对冲值">
+                <el-input  v-model="chsWarr.delta"></el-input>
+            </el-form-item>
+            <el-form-item label="窝轮价格">
+                <el-input  v-model="chsWarr.warrantprice"></el-input>
+            </el-form-item>
             <el-form-item label="单手价格">
                 <el-input  v-model="chsWarr.price"></el-input>
-            </el-form-item>
-            <el-form-item label="打和点">
-                <el-input  v-model="chsWarr.breakpoint"></el-input>
             </el-form-item>
             <el-form-item label="当前股价">
                 <el-input  v-model="chsWarr.point"></el-input>
             </el-form-item>
+            <el-form-item label="打和点">
+                <el-input  v-model="chsWarr.breakpoint"></el-input>
+            </el-form-item>
+            <el-form-item label="距今天数">
+                <el-input  v-model="chsWarr.countdown"></el-input>
+            </el-form-item>
+            <!-- 填写看涨数据 -->
              <el-form-item label="看涨价格">
                 <el-input v-model="lookPrice"></el-input>
             </el-form-item>
+            <!-- 点击进行计算 -->
             <el-button type="primary" @click="handleCalc">计算结果</el-button>
+            <!-- 结果页面 -->
+
             <el-form-item label="预计目标价">
-                <el-input  v-model="lookPrice"></el-input>
+                <el-input  v-model="lookRes.warrWillPoint"></el-input>
             </el-form-item>
-            <el-form-item label="单手盈利-盈利百分比">
-                <el-input  v-model="lookPrice"></el-input>
+            <el-form-item label="收益比">
+                <el-input  v-model="lookRes.upPerc"></el-input>
+            </el-form-item>
+            <el-form-item label="预计打和点">
+                <el-input  v-model="lookRes.stockWillPoint"></el-input>
             </el-form-item>
         </el-form>
         
@@ -46,7 +63,7 @@ export default {
             choiced: [],
             options: [],
             chsWarr: {},
-            lookPrice: 0, // 预测价格
+            lookPrice: '', // 预测价格
             lookRes: {}, // 预测价格对应的结果
         }
     },
@@ -59,15 +76,31 @@ export default {
             let lookPrice = this.lookPrice;
             // 获取窝轮信息 
             let chsWarr = this.chsWarr;
-            // 计算当前价格打和点价格，计算未来价格对应的打和点价格
-            // breakpoint            提高的价格 * (1-溢价)
-            let {conversion,premium,point,breakpoint,warrantprice} = chsWarr;
-            breakpoint = parseFloat(breakpoint);
-            // 目标值对应的新的打和点
-            let willBreakpoint = breakpoint + (parseFloat(lookPrice) - parseFloat(point)) * (1 - parseFloat(premium)/100);
-            // 打和点提升
-            let breakPointRise = (willBreakpoint - breakpoint)/parseFloat(conversion);
-            console.log(`${breakPointRise + parseFloat(warrantprice)}`);
+            // warrant, // 涡轮名称
+            // stock, // 正股名称
+            // code, // 代码
+            // type, // PUT or CALL
+            // amplitude, // 振幅
+            // volume, // 成交量/k
+            // countdown, // 距今天数
+            // price, // 单手价格
+            // effectpoint, // 行权价差
+            // point, // 当前价格
+            // breakpoint, // 打和点
+            // changeval,// 涨跌幅
+            // premium,// 溢价
+            // warrantprice,// 当前价
+            // conversion // 换股比率
+            // delta // 对冲值
+            // 价格变化 = （预计价-当前价）/ 换股比率 * 对冲值
+            let {conversion,point,delta,warrantprice,effectpoint} = chsWarr;
+            let warrChangePoint = (parseFloat(delta) * (parseFloat(lookPrice) - parseFloat(point)) / parseFloat(conversion));
+            let curWarrPoint = parseFloat(warrantprice);
+            let upPerc = parseFloat(warrChangePoint / curWarrPoint);
+            let stockWillPoint = parseFloat(lookPrice) + parseFloat(conversion)*(warrChangePoint+curWarrPoint) + parseFloat(effectpoint);
+            this.$set(this.lookRes,"warrWillPoint",(warrChangePoint+curWarrPoint).toFixed(4)); // 预计窝轮point
+            this.$set(this.lookRes,'upPerc',(upPerc*100).toFixed(2)+'%'); // 涨幅百分比
+            this.$set(this.lookRes,'stockWillPoint',stockWillPoint.toFixed(2)); // 预计打和点
         },
         initCalc() {
             this.lookPrice = 0;
@@ -87,21 +120,6 @@ export default {
             this.csvDate = csvDate;
             let map = new Map();
             let res = [];
-            // warrant, // 涡轮名称
-            // stock, // 正股名称
-            // code, // 代码
-            // type, // PUT or CALL
-            // amplitude, // 振幅
-            // volume, // 成交量/k
-            // countdown, // 距今天数
-            // price, // 单手价格
-            // effectpoint, // 行权价差
-            // point, // 当前价格
-            // breakpoint, // 打和点
-            // changeval,// 涨跌幅
-            // premium,// 溢价
-            // warrantprice,// 当前价
-            // conversion // 换股比率
             for (let date of csvDate) {
                 let stock = date.stock;
                 let warrant = {
@@ -139,7 +157,7 @@ export default {
 <style>
 .rise-wrapper {
     width: 70%;
-    padding-top: 200px;
+    padding-top: 100px;
     margin: 0 auto;
 }
 </style>
