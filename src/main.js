@@ -4,6 +4,7 @@ import App from './App.vue'
 import './plugins/element.js'
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import 'lib-flexible/flexible'
 
 import GlobalMixin from '@/mixin';
 Vue.use(Vant);

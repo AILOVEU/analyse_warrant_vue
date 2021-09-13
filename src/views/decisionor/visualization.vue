@@ -3,7 +3,10 @@
         <!-- tab右半部分，生成图标 -->
         <el-button type="warning" @click="generateChart">生成图表</el-button>
         <br />
-        <canvas width="1200" height="600" id="main"></canvas>
+        <div style="margin:0 auto;">
+            <canvas width="700" height="600" id="main"></canvas>
+        </div>
+        
     </div>
 </template>
 
@@ -146,6 +149,7 @@ export default {
 
 <style scoped>
 .visual-wrapper {
-    width: 1400px;
+    text-align: center;
+    width: 730px;
 }
 </style>

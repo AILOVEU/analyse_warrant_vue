@@ -1,17 +1,17 @@
 <template>
     <div class="app">
-        <el-card class="choice-box" >
+        <el-card class="choice-box">
             <div class="content" @click="jumpTo('/selector')">
                 窝轮筛选器
             </div>
         </el-card>
-        <el-card class="choice-box" >
-            <div class="content"  @click="jumpTo('/decisionor')">
+        <el-card class="choice-box">
+            <div class="content" @click="jumpTo('/decisionor')">
                 做T成本决策器
             </div>
         </el-card>
-        <el-card class="choice-box" >
-            <div class="content"  @click="jumpTo('/salary')">
+        <el-card class="choice-box">
+            <div class="content" @click="jumpTo('/salary')">
                 工资计算器
             </div>
         </el-card>
@@ -33,26 +33,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-size: 26px;
     text-align: center;
     color: #2c3e50;
     margin: 100px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 900px;
+    width: 600px;
 }
 .choice-box {
-    width: 300px;
-    height: 300px;
-    line-height: 250px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
 }
-.choice-box .content{
+.choice-box .content {
     padding: 0 auto;
-
+}
+@media screen and (max-width: 750px) {
+    .app {
+        display: block;
+    }
 }
 </style>

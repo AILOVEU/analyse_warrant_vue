@@ -68,13 +68,14 @@
             </div>
         </div>
         <el-card class="export-box">
-            <el-button type="primary" @click="copy" class="tag-read" :data-clipboard-text="targetStr" plain>快速复制数据
+            <el-button type="primary" @click="copy" class="tag-read"
+                :data-clipboard-text="targetStr" plain>快速复制数据
             </el-button>
             <br />
             <el-tag type="info">{{target}}</el-tag>
             <br />
 
-            <el-input v-model="quickJsonStr" style="width: 600px;" type="textarea" :rows="2">
+            <el-input v-model="quickJsonStr" style="width: 300px;" type="textarea" :rows="2">
             </el-input>
             <br />
             <el-button @click="coverImport" plain type="danger">覆盖导入</el-button>
@@ -97,7 +98,7 @@ export default {
             },
             quickJsonStr: '',
             clipboard: null
-            
+
         }
     },
     props: ['targetData'],
@@ -124,13 +125,13 @@ export default {
             this.clipboard = new Clipboard('.tag-read')
         },
         coverImport() {
-            if(!this.quickJsonStr) {
+            if (!this.quickJsonStr) {
                 return;
             }
             this.target = JSON.parse(this.quickJsonStr)
         },
         appendImport() {
-            if(!this.quickJsonStr) {
+            if (!this.quickJsonStr) {
                 return;
             }
             let newTarget = JSON.parse(this.quickJsonStr);
@@ -178,7 +179,7 @@ export default {
 <style scoped>
 .target-wrapper {
     display: flex;
-    width: 1400px;
+    width: 650px;
     min-height: 600px;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -194,26 +195,28 @@ export default {
     user-select: none;
     -webkit-user-select: none; /* for Chrome */
 }
+
 .block {
     display: flex;
     flex-direction: row;
-    width: 600px;
+    width: 300px;
     height: 40px;
     line-height: 40px;
 }
 .block .lable {
-    width: 200px;
+    width: 100px;
     height: 40px;
     line-height: 40px;
     user-select: none;
     -webkit-user-select: none; /* for Chrome */
 }
 .block .input {
-    width: 400px;
+    width: 200px;
     height: 40px;
     line-height: 40px;
 }
 .export-box {
+    max-width: 750px;
     min-height: 200px;
     margin-top: 50px;
 }

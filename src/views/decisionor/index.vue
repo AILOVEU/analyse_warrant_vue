@@ -26,11 +26,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .decisionor-panel-wrapper {
     margin: 10px auto;
     min-height: 700px;
-    width: 1400px;
+    width: 730px;
     text-align: center;
+    .border-card{
+        width: 730px;
+    }
 }
 </style>
