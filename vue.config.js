@@ -12,6 +12,13 @@ module.exports = {
     // 是否启用 CSS modules for all css / pre-processor files.
     modules: false
   },
+  chainWebpack: config => {
+    config.plugin('html')
+      .tap(args => {
+        args[0].title="窝轮计算器"
+        return args;
+      })
+  },
   configureWebpack: (config)=> {
     const plugins = config.plugins;
     plugins.push(new Visualizer({

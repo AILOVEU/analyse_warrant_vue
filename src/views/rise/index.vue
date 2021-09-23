@@ -3,7 +3,7 @@
         <input name="csvfile" type="file" ref="file" @change="handleCsv" /> <br />
         <p></p>
 
-        <el-form label-width="100px">
+        <el-form label-width="90px">
             <!-- 窝轮相关数据 -->
             <el-form-item label="选择窝轮">
                 <el-cascader v-model="choiced" :options="options" @change="handleChange">
@@ -156,8 +156,10 @@ export default {
 
 <style>
 .rise-wrapper {
-    width: 70%;
-    padding-top: 100px;
+    text-align: left;
+    width: 90%;
+    padding-top: 40px;
     margin: 0 auto;
+    font-size: 16px;
 }
 </style>

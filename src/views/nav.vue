@@ -35,7 +35,8 @@ export default {
 
 <style scoped lang="scss">
 .app {
-    font-size: 26px;
+    box-sizing: border-box;
+    font-size: 22px;
     text-align: center;
     color: #2c3e50;
     margin: 100px auto;
@@ -43,18 +44,35 @@ export default {
     flex-direction: row;
     justify-content: space-around;
     width: 600px;
+    .choice-box {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        .content {
+            padding: 0 auto;
+        }
+    }
 }
-.choice-box {
-    width: 200px;
-    height: 200px;
-    line-height: 200px;
-}
-.choice-box .content {
-    padding: 0 auto;
+.el-card__body{
+    padding: 0;
 }
 @media screen and (max-width: 750px) {
     .app {
-        display: block;
+        box-sizing: border-box;
+        font-size: 22px;
+        text-align: center;
+        color: #2c3e50;
+        margin: 100px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 600px;
+        .choice-box {
+            margin: 0 auto;
+            .content {
+                padding: 0;
+            }
+        }
     }
 }
 </style>
